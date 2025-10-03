@@ -24,7 +24,7 @@ export default function UserAnalytics() {
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/product/admin/analytics", {
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/product/admin/analytics`, {
           withCredentials: true,
         });
         setData(res.data);

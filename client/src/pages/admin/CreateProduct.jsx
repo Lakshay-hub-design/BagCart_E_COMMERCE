@@ -51,7 +51,7 @@ const CreateProduct = () => {
       formData.append("stock", form.stock);
       if (form.image) formData.append("image", form.image);
 
-      await axios.post("http://localhost:3000/api/product/create", formData, {
+      await axios.post(`${import.meta.env.VITE_BASE_URL}/product/create`, formData, {
         withCredentials: true,
       });
 

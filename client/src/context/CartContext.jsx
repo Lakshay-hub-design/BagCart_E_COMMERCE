@@ -9,7 +9,7 @@ export const CartProvider = ({children}) => {
 
     const fetchCart = async () =>{
         try {
-            const res = await axios.get('http://localhost:3000/api/cart',
+            const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/cart`,
                 {withCredentials: true}
             )
             setCart(res.data.products || [])
@@ -20,7 +20,7 @@ export const CartProvider = ({children}) => {
 
     const addToCart = async (productId, quantity = 1) =>{
         try {
-            const res = await axios.post('http://localhost:3000/api/cart/add', {productId, quantity}, 
+            const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/cart/add`, {productId, quantity}, 
                 {withCredentials: true}
             )
             setCart(res.data.products)
@@ -32,7 +32,7 @@ export const CartProvider = ({children}) => {
 
     const removeFromCart = async (productId) =>{
         try {
-            const res = await axios.post(`http://localhost:3000/api/cart/${productId}`, {},
+            const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/cart/${productId}`, {},
                 {withCredentials: true}
             )
             setCart(res.data.products)

@@ -23,7 +23,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/product/admin/stats", {
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/product/admin/stats`, {
           withCredentials: true,
         });
         setStats(res.data);
@@ -39,7 +39,7 @@ const AdminDashboard = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.post(`http://localhost:3000/api/product/delete/${deleteId}`, {}, {
+      await axios.post(`${import.meta.env.VITE_BASE_URL}/product/delete/${deleteId}`, {}, {
         withCredentials: true,
       });
       setProducts(products.filter((p) => p._id !== deleteId));
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
     try {
       const { _id, ...data } = updateProduct;
       const res = await axios.post(
-        `http://localhost:3000/api/product/editproduct/${_id}`,
+        `${import.meta.env.VITE_BASE_URL}/product/editproduct/${_id}`,
         data,
         { withCredentials: true }
       );

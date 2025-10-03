@@ -15,7 +15,7 @@ export const ProductsProvider = ({children}) => {
 
   const fetchProduct = async () =>{
         try{
-            const res = await axios.get('http://localhost:3000/api/product/shop',{
+            const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/product/shop`,{
                 params: { search: searchQuery, filter, sort, page, limit },
                 withCredentials: true
             })

@@ -25,7 +25,7 @@ export default function Register() {
     setErr("");
     setLoading(true);
     try {
-        await axios.post("http://localhost:3000/api/auth/user/register", form, {
+        await axios.post(`${import.meta.env.VITE_BASE_URL}/auth/user/register`, form, {
             withCredentials: true
         })
       await new Promise((r) => setTimeout(r, 900));

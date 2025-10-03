@@ -7,7 +7,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await axios.get("http://localhost:3000/api/auth/user/logout", {
+    await axios.get(`${import.meta.env.VITE_BASE_URL}/auth/user/logout`, {
       withCredentials: true,
     });
     localStorage.removeItem("user");

@@ -7,7 +7,7 @@ export default function OrdersPage() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/user/orders", {
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/orders`, {
           withCredentials: true,
         });
         setOrders(res.data);

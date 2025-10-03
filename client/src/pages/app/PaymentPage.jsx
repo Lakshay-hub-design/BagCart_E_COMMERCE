@@ -31,7 +31,7 @@ export default function PaymentPage() {
       paymentStatus 
     };
     const res = await axios.post(
-      "http://localhost:3000/api/user/order",
+      `${import.meta.env.VITE_BASE_URL}/user/order`,
       orderData,
       { withCredentials: true }
     );

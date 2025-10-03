@@ -26,7 +26,7 @@ export default function Login() {
     setErr("");
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:3000/api/auth/user/login', form, {
+      const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/auth/user/login`, form, {
         withCredentials: true
       })
       await new Promise((r) => setTimeout(r, 900));

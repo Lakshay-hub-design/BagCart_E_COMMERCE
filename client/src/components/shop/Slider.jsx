@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 
 const Slider = () => {
   const images = [
-    "/images/image1.png", // put these in public/images/
+    "/images/image1.png",
     "/images/image2.png",
     "/images/image3.png",
   ];
 
   const [current, setCurrent] = useState(0);
 
-  // Auto-slide every 3 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
@@ -27,7 +26,6 @@ const Slider = () => {
 
   return (
     <div className="relative w-full max-w-7xl mx-auto overflow-hidden rounded-lg shadow-lg">
-      {/* Slides */}
       <div
         className="flex transition-transform duration-700"
         style={{ transform: `translateX(-${current * 100}%)` }}
@@ -42,7 +40,6 @@ const Slider = () => {
         ))}
       </div>
 
-      {/* Buttons */}
       <button
         onClick={prevSlide}
         className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full"
@@ -56,7 +53,6 @@ const Slider = () => {
         ❯
       </button>
 
-      {/* Dots */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
         {images.map((_, index) => (
           <button

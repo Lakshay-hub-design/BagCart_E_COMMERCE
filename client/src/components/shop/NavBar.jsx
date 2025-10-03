@@ -18,7 +18,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 left-0 z-50 w-full bg-white border-b border-slate-200">
-      <div className="mx-auto max-w-7xl h-14 px-4 sm:px-6 lg:px-8 flex items-center justify-between md:shadow">
+      <div className="mx-auto max-w-7xl h-14 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <Link
           to="/shop"
           className="shrink-0 text-lg sm:text-xl font-bold text-slate-900 hover:text-blue-500 transition-all"

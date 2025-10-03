@@ -26,7 +26,7 @@ export default function CartPage() {
 
   const fetchAddress = async () =>{
     try{
-      const res = await axios.get('http://localhost:3000/api/user/address',{
+      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/address`,{
         withCredentials: true
       });
       if(res.data) setAddress(res.data)
@@ -42,7 +42,7 @@ export default function CartPage() {
 
   const updateQuantity = async (productId, newQty) => {
     try {
-      await axios.post("http://localhost:3000/api/user/update", {
+      await axios.post(`${import.meta.env.VITE_BASE_URL}/user/update`, {
         productId,
         quantity: newQty,
       }, { withCredentials: true });
@@ -59,7 +59,7 @@ export default function CartPage() {
   const handleSaveAddress = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post('http://localhost:3000/api/user/address',
+      const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/user/address`,
         formData,
         { withCredentials: true }
       )

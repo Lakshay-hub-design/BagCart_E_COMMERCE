@@ -17,7 +17,7 @@ export const AuthProvider = ({children}) => {
                 return;
         }
             try{
-                const res = await axios.get('http://localhost:3000/api/user/me',{
+                const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/me`,{
                     withCredentials: true
                 });
                 setUser(res.data.user)
@@ -36,7 +36,7 @@ export const AuthProvider = ({children}) => {
 
     const logout = async () => {
         try {
-        await axios.get("http://localhost:3000/api/auth/user/logout", {
+        await axios.get(`${import.meta.env.VITE_BASE_URL}/auth/user/logout`, {
             withCredentials: true,
         });
         localStorage.removeItem("user");

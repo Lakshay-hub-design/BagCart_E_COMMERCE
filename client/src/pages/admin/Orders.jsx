@@ -16,7 +16,7 @@ export default function Orders() {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:3000/api/user/admin/orders`, {
+      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/admin/orders`, {
         withCredentials: true,
       });
       setOrders(res.data);
@@ -37,7 +37,7 @@ export default function Orders() {
   const handleStatusChange = async (orderId, newStatus) => {
     try {
       const res = await axios.post(
-        `http://localhost:3000/api/user/admin/update/${orderId}/status`,
+        `${import.meta.env.VITE_BASE_URL}/user/admin/update/${orderId}/status`,
         { status: newStatus },
         { withCredentials: true }
       );
