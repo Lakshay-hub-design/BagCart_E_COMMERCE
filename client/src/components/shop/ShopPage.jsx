@@ -96,7 +96,6 @@ const ShopContent = () => {
         </div>
       )}
 
-      {/* ===== Desktop Layout ===== */}
       <div className="md:flex px-6 py-6 gap-4">
         {/* Left Filters */}
         <div className="hidden md:block w-1/5">

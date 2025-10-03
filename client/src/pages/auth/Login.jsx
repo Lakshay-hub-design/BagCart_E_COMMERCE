@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState } from "react";
 import { data, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { useProduct } from "../../context/ProductsContext";
 
 export default function Login() {
   const { login } = useAuth()
@@ -14,7 +13,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
-  const { fetchProduct } = useProduct()
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +31,6 @@ export default function Login() {
       await new Promise((r) => setTimeout(r, 900));
       localStorage.setItem("user", JSON.stringify(res.data.user));
       const role = res.data.user.role
-      fetchProduct()
       login(res.data.user)
       if(role === "admin"){
         navigate('/admin-dashboard')
