@@ -15,12 +15,14 @@ import UserAnalytics from '../pages/admin/UserAnalytics'
 import PaymentPage from '../pages/app/PaymentPage'
 import OrdersPage from '../pages/app/OrdersPage'
 import { Toaster } from 'sonner'
+import { Landing } from '../pages/landing/Landing'
 
 const AppRoute = () => {
   return (
     <>
     <Toaster position="top-right" richColors />
       <Routes>
+        <Route path='/' element={<Landing />} />
         <Route path="/user/register" element={<Register />} />
         <Route path='/user/login' element={<Login />} />
         <Route 
