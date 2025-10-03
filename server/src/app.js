@@ -13,7 +13,7 @@ app.use(cookieParser())
 app.use(cors({
     origin: [
         'http://localhost:5173',
-        'https://bag-cart-e-commerce.vercel.app/'
+        'https://bag-cart-e-commerce.vercel.app'
     ],
     credentials: true
 }))
