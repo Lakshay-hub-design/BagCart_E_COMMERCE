@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Register from '../pages/auth/Register'
 import Login from '../pages/auth/Login'
@@ -7,12 +7,12 @@ import AdminDashboard from '../pages/admin/AdminDashboard'
 import ProtectedRoute from '../components/protectedRoute/ProtectedRoute'
 import CreateProduct from '../pages/admin/CreateProduct'
 import "react-toastify/dist/ReactToastify.css";
-import Account from '../pages/app/Account'
-import Cart from '../pages/app/Cart'
-import Orders from '../pages/admin/Orders'
+const Account = lazy(() => import('../pages/app/Account'));
+const Cart = lazy(() => import('../pages/app/Cart'));
+const OrdersPage = lazy(() => import('../pages/app/OrdersPage'));
 import UserAnalytics from '../pages/admin/UserAnalytics'
 import PaymentPage from '../pages/app/PaymentPage'
-import OrdersPage from '../pages/app/OrdersPage'
+import Orders from '../pages/admin/Orders'
 import { Toaster } from 'sonner'
 import { Landing } from '../pages/landing/Landing'
 import { ProductsProvider } from '../context/ProductsContext'
@@ -22,6 +22,7 @@ const AppRoute = () => {
   return (
     <>
     <Toaster position="top-right" richColors />
+    <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
       <Routes>
         <Route path='/' element={<Landing />} />
         <Route path="/user/register" element={<Register />} />
@@ -65,6 +66,7 @@ const AppRoute = () => {
           }
         />
       </Routes>
+      </Suspense>
     </>
   )
 }

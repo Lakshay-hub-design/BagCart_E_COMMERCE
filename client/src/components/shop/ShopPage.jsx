@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useProduct } from "../../context/ProductsContext";
 import { useCart } from "../../context/CartContext";
+import ProductSkeleton from "./ProductSkeleton";
 
 const ShopContent = () => {
   const {
@@ -12,6 +13,7 @@ const ShopContent = () => {
     page,
     setPage,
     totalPages,
+    loading
   } = useProduct();
   const { addToCart } = useCart();
 
@@ -163,7 +165,10 @@ const ShopContent = () => {
 
         {/* Right Products Grid */}
         <div className="lg:w-4/5 w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {products.map((product, idx) => (
+          {loading ?( 
+            <ProductSkeleton />
+          ) : ( 
+          products.map((product, idx) => (
             <div
               key={idx}
               className="bg-white shadow rounded overflow-hidden relative"
@@ -180,6 +185,7 @@ const ShopContent = () => {
                 <img
                   src={product.image}
                   alt={product.name}
+                  loading="lazy"
                   className="h-30 object-contain"
                 />
               </div>
@@ -204,7 +210,7 @@ const ShopContent = () => {
                 </div>
               </div>
             </div>
-          ))}
+          )))}
         </div>
       </div>
 

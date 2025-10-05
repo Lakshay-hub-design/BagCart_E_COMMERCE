@@ -12,11 +12,16 @@ export const ProductsProvider = ({children}) => {
   const [total, setTotal] = useState(null)
 
   const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [debouncedSearch, setDebouncedSearch] = useState(searchQuery);
+
+
 
   const fetchProduct = async () =>{
+    setLoading(true)
         try{
             const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/product/shop`,{
-                params: { search: searchQuery, filter, sort, page, limit },
+                params: { search: debouncedSearch, filter, sort, page, limit },
                 withCredentials: true
             })
             setProducts(res.data.products);
@@ -24,16 +29,28 @@ export const ProductsProvider = ({children}) => {
             setTotal(res.data.total)
         }catch(err){
             console.error(err)
+        } finally{
+          setLoading(false)
         }
   }
 
   useEffect(() => {
     fetchProduct()
-  }, [searchQuery, filter, sort, page, limit])
+  }, [debouncedSearch, filter, sort, page, limit])
+
+  useEffect(() => {
+  const handler = setTimeout(() => {
+    setDebouncedSearch(searchQuery);
+  }, 500);
+
+  return () => {
+    clearTimeout(handler);
+  };
+}, [searchQuery]);
 
 
   return (
-    <ProductsContext.Provider value={{ fetchProduct, products, setProducts, total, searchQuery, setSearchQuery, filter, setFilter, sort, setSort, page, setPage, limit, setLimit, totalPages }} >
+    <ProductsContext.Provider value={{ fetchProduct, products, setProducts, total, searchQuery, setSearchQuery, filter, setFilter, sort, setSort, page, setPage, limit, setLimit, totalPages, loading }} >
         {children}
     </ProductsContext.Provider>
   )
